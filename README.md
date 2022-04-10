@@ -11,6 +11,8 @@ Project is created with:
 * nginx
 * PHP
 * Docker
+* HTML
+* CSS
 	
 ## Setup
 To run this project, select proper branch, copy code locally and run "docker-compose up"
