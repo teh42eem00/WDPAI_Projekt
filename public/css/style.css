@@ -1,0 +1,72 @@
+h1 {
+    font-size: 3em;
+}
+
+div {
+    font-size: 2em;
+}
+
+body {
+    margin: 0;
+    margin-top: 5em;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    padding: 0.5em 0;
+}
+
+nav>i {
+    margin-right: 1em;
+}
+
+
+
+@media only screen and (device-width: 390px) {
+    body {
+        background-color: blue;
+        font-size: 10px;
+    }
+}
+
+.album-container,
+.sidebar-container {
+    width: calc(100%-2em);
+    height: 100vh;
+    padding: 1em;
+}
+
+.album-container {
+    height: calc(100vh-5em);
+    overflow-x: clip;
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    overflow: scroll;
+}
+
+.sidebar-container {
+    background-color: gainsboro;
+}
+
+
+.album {
+    width: 200px;
+    height: 200px;
+    border-radius: 1em;
+    border: 1px solid black;
+}
