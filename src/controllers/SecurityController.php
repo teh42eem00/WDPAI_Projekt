@@ -1,9 +1,10 @@
 <?php
 
 require_once 'AppController.php';
-require_once __DIR__ .'/../models/User.php';
+require_once __DIR__ . '/../models/User.php';
 
-class SecurityController extends AppController {
+class SecurityController extends AppController
+{
 
     public function login()
     {
@@ -14,12 +15,13 @@ class SecurityController extends AppController {
 
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $password_from_db = password_hash($user->getPassword(), PASSWORD_BCRYPT);
 
         if ($user->getEmail() !== $email) {
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
         }
 
-        if ($user->getPassword() !== $password) {
+        if (!(password_verify($password, $password_from_db))) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
