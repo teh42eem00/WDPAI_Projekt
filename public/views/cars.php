@@ -14,7 +14,7 @@
     PROJECTS
     <h1>
         <ul>
-            <?php foreach($projects as $key=>$value): ?>
+            <?php foreach($cars as $car): ?>
 
             <li><?=  $key. ' ' .$value; ?></li>
 
