@@ -25,7 +25,7 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['User not found!']]);
         }
 
-        $password_from_db = password_hash($user->getPassword(), PASSWORD_BCRYPT);
+        $password_from_db = $user->getPassword();
 
         if ($user->getEmail() !== $email) {
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
