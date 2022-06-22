@@ -11,7 +11,7 @@ class CarRepository extends Repository
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM public.cars WHERE id_car = :id_car
         ');
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_car', $id_car, PDO::PARAM_INT);
         $stmt->execute();
 
         $car = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -16,6 +16,13 @@ class CarController extends AppController
         $this->carRepository = new CarRepository();
     }
 
+    public function cars()
+    {
+        $cars = $this->carRepository->getCar(1);
+        $this->render('cars', ['cars' => $cars]);
+    }
+
+
 
     public function addCar()
     {
