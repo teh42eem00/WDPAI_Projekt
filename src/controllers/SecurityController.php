@@ -35,7 +35,11 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $email;
+        $_SESSION['userid'] = $user->getUserId();
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/expenses");
+        header("Location: $url/expenses");
     }
 }

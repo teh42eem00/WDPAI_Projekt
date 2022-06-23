@@ -35,7 +35,7 @@ class CarRepository extends Repository
         INSERT INTO cars(id_car, id_user, car_setup_id, license_plate)
         VALUES (?, ?, ?, ?)
         ');
-        $assignedById = 1; # DOCELOWO pobrac z SESJI obecne id usera!
+        $assignedById = $_SESSION['userid'];
         $stmt->execute(
             $car->getIdCar(),
             $assignedById,

@@ -6,13 +6,20 @@ class User
     private string $password;
     private string $name;
     private string $surname;
+    private int $user_id;
 
-    public function __construct(string $email, string $password, string $name, string $surname)
+    public function __construct(int $user_id, string $email, string $password, string $name, string $surname)
     {
+        $this->user_id = $user_id;
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->user_id;
     }
 
     public function getEmail(): string

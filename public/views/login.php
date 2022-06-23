@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <title>LOGIN PAGE</title>
@@ -15,11 +14,12 @@
         <form class="login" action="login" method="POST">
             <div class="messages">
                 <?php
-                if(isset($messages)){
-                    foreach($messages as $message) {
+                if (isset($messages)) {
+                    foreach ($messages as $message) {
                         echo $message;
                     }
                 }
+
                 ?>
             </div>
             <input name="email" type="text" placeholder="email">

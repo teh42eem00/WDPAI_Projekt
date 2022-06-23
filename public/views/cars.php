@@ -1,3 +1,7 @@
+<?php
+// cars.php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,14 +15,22 @@
 </head>
 
 <body>
-    CARS
+<?php
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+    ?>
     <h1>
-        <section class="cars">
-            <?php
-                echo $cars->getLicensePlate();
-            ?>
-        </section>
+        CARS
     </h1>
-</body>
+    <section class="cars">
+        <?php
+        echo $cars->getLicensePlate();
+        ?>
+    </section>
+    <?php
+} else {
 
+    echo "Please " . "<a href='login'> login </a>" . " first!";
+}
+?>
+</body>
 </html>
