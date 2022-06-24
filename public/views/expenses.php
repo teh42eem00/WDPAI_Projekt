@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="public/css/expenses.css">
 
     <script src="https://kit.fontawesome.com/723297a893.js" crossorigin="anonymous"></script>
-    <title>PROJECTS</title>
+    <title>EXPENSES</title>
 </head>
 
 <body>
@@ -34,7 +34,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                 </li>
                 <li>
                     <i class="fas fa-project-diagram"></i>
-                    <a href="#" class="button">Logout</a>
+                    <form class="lgoout" action="logout" method="post">
+                        <button type="submit">LOGOUT</button>
+                    </form>
                 </li>
             </ul>
         </nav>

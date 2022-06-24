@@ -21,11 +21,28 @@ class UserRepository extends Repository
         }
 
         return new User(
-            $user['user_id'],
             $user['email'],
             $user['password_hash'],
             $user['firstname'],
             $user['lastname']
         );
+    }
+
+    public function addUser(User $user)
+    {
+        $date = new DateTime();
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO public.user (id_role, firstname, lastname, email, password_hash, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ');
+
+        $stmt->execute([
+            1,
+            $user->getName(),
+            $user->getSurname(),
+            $user->getEmail(),
+            $user->getPassword(),
+            $date->format('Y-m-d')
+        ]);
     }
 }
