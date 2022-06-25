@@ -17,44 +17,9 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
     ?>
     <div class="base-container">
-        <nav>
-            <img src="public/img/logo.svg">
-            <ul>
-                <li>
-                    <i class="fas fa-project-diagram"></i>
-                    <a href="#" class="button">Home</a>
-                </li>
-                <li>
-                    <i class="fas fa-project-diagram"></i>
-                    <a href="#" class="button">History</a>
-                </li>
-                <li>
-                    <i class="fas fa-project-diagram"></i>
-                    <a href="#" class="button">Add</a>
-                </li>
-                <li>
-                    <i class="fas fa-project-diagram"></i>
-                    <form class="lgoout" action="logout" method="post">
-                        <button type="submit">LOGOUT</button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-
+        <?php include('menu.php') ?>
         <main>
-            <header>
-                <div class="search-bar">
-                    <form>
-                        <input placeholder="search history">
-                    </form>
-                </div>
-                <div class="add-project">
-                    <i class="fas fa-plus"></i> Honda Accord
-                </div>
-                <div class="add-project">
-                    <i class="fas fa-plus"></i> Add Vehicle
-                </div>
-            </header>
+            <?php include('header.php') ?>
             <section class="projects">
                 <div id="project-1">
                     <img src="public/img/oil.svg">

@@ -18,18 +18,21 @@ class CarController extends AppController
 
     public function cars()
     {
-        $cars = $this->carRepository->getCar(1);
+        session_start();
+        $user_id = $_SESSION['user_id'];
+        $cars = $this->carRepository->getCars($user_id);
         $this->render('cars', ['cars' => $cars]);
     }
 
-
-
     public function addCar()
     {
-        // TODO create new project object and save it in database
-        $car = new Car($_POST['id_car'], $_POST['id_user'], $_POST['car_setup_id'], $_POST['license_plate']);
-        $this->carRepository->addCar($car);
+        if ($this->isPost()){
+            // TODO create new project object and save it in database
+            $car = new Car(0, 0, $_POST['brand'], $_POST['model'], $_POST['production_year'], $_POST['license_plate']);
+            $this->carRepository->addCar($car);
+            return $this->render('add-car', ['messages' => ['You succesfully added new car!']]);
+    }
 
-        return $this->render('cars', ['messages' => $this->message]);
+        return $this->render('add-car', ['messages' => $this->message]);
     }
 }

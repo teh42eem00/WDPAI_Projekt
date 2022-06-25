@@ -4,15 +4,26 @@ class Car
 {
     private int $id_car;
     private int $id_user;
-    private int $car_setup_id;
+    private string $brand;
+    private string $model;
+    private int $production_year;
     private string $license_plate;
 
-
-    public function __construct(int $id_car, int $id_user, int $car_setup_id, string $license_plate)
+    /**
+     * @param int $id_car
+     * @param int $id_user
+     * @param string $brand
+     * @param string $model
+     * @param int $production_year
+     * @param string $license_plate
+     */
+    public function __construct(int $id_car, int $id_user, string $brand, string $model, int $production_year, string $license_plate)
     {
         $this->id_car = $id_car;
         $this->id_user = $id_user;
-        $this->car_setup_id = $car_setup_id;
+        $this->brand = $brand;
+        $this->model = $model;
+        $this->production_year = $production_year;
         $this->license_plate = $license_plate;
     }
 
@@ -49,19 +60,51 @@ class Car
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCarSetupId(): int
+    public function getBrand(): string
     {
-        return $this->car_setup_id;
+        return $this->brand;
     }
 
     /**
-     * @param int $car_setup_id
+     * @param string $brand
      */
-    public function setCarSetupId(int $car_setup_id): void
+    public function setBrand(string $brand): void
     {
-        $this->car_setup_id = $car_setup_id;
+        $this->brand = $brand;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModel(): string
+    {
+        return $this->model;
+    }
+
+    /**
+     * @param string $model
+     */
+    public function setModel(string $model): void
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProductionYear(): int
+    {
+        return $this->production_year;
+    }
+
+    /**
+     * @param int $production_year
+     */
+    public function setProductionYear(int $production_year): void
+    {
+        $this->production_year = $production_year;
     }
 
     /**
@@ -79,6 +122,7 @@ class Car
     {
         $this->license_plate = $license_plate;
     }
+
 
 
 }
