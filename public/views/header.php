@@ -4,10 +4,7 @@
             <input placeholder="search history">
         </form>
     </div>
-    <div class="add-project">
-        <a href="/cars">Honda Accord</a>
-    </div>
-    <div class="add-project">
-        <a href="/addCar">Add Vehicle</a>
-    </div>
+    <a class="add-project" href="/cars"><?php echo $_SESSION['selectedCar'] ?></a>
+    <a class="add-project" href="/addCar">Add Vehicle</a>
+
 </header>

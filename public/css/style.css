@@ -59,6 +59,10 @@ input {
     width: 50%;
 }
 
+.input-text {
+    color: gray;
+}
+
 @media only screen and (max-device-width: 420px) {
     .container {
         flex-direction: column;

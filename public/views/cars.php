@@ -21,15 +21,28 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         <main>
             <?php include('header.php') ?>
             <section class="expenses">
-                <?php foreach ($cars as $car): ?>
-                    <div id="<?= $car->getIdCar(); ?>">
-                        <div>
-                            <h2><?= $car->getBrand() . " " . $car->getModel(); ?></h2>
-                            <h3><?= $car->getProductionYear(); ?></h3>
-                            <p><?= $car->getLicensePlate(); ?></p>
+                <?php
+                if (isset($messages)) {
+                    foreach ($messages as $message) {
+                        echo $message;
+                    }
+                }
+                if (!empty($cars)) {
+                    foreach ($cars as $car): ?>
+                        <div id="<?= $car->getIdCar(); ?>">
+                            <div>
+                                <h2><?= $car->getBrand() . " " . $car->getModel(); ?></h2>
+                                <h3><?= $car->getProductionYear(); ?></h3>
+                                <p><?= $car->getLicensePlate(); ?></p>
+                                <form class="carSelect" action="carSelect" method="POST">
+                                    <input type="hidden" id="carSelect" name="carSelect"
+                                           value="<?php echo $car->getIdCar(); ?>">
+                                    <button type="submit">Select</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach;
+                } else echo "<a href='".'/addCar'."'>You need to add car first!</a>"; ?>
             </section>
         </main>
     </div>

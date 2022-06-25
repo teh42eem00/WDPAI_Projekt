@@ -123,6 +123,10 @@ class Car
         $this->license_plate = $license_plate;
     }
 
+    public function getDescription(): string
+    {
+        return $this->brand . ' ' . $this->model . ' (' . $this->production_year . ') ' . $this->license_plate;
+    }
 
 
 }

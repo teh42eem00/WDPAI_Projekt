@@ -45,7 +45,7 @@ class SecurityController extends AppController
         $_SESSION['username'] = $email;
         $_SESSION['user_id'] = $this->userRepository->getUserId($email);
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: $url/expenses");
+        header("Location: $url/cars");
     }
 
     public function register()

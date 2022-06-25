@@ -25,10 +25,11 @@
             <input name="email" type="text" placeholder="email">
             <input name="password" type="password" placeholder="password">
             <button type="submit">LOGIN</button>
+            <div class="input-text">
+                Haven't account yet? <a href="/register">REGISTER HERE</a>
+            </div>
         </form>
-        <div>
-            <a href="/register" class="button">REGISTER</a>
-        </div>
+
     </div>
 </div>
 </body>

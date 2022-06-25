@@ -1,7 +1,7 @@
 section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2em;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
     padding: 2em;
     overflow: auto;
 }
@@ -16,7 +16,7 @@ section {
 .expenses>div>div {
     height: 50%;
     margin: 1em;
-    color: #2699FB;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

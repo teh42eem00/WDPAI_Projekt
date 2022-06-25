@@ -21,7 +21,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         <main>
             <?php include('header.php') ?>
             <section class="car-form">
-                <h1>UPLOAD</h1>
+                <h1>Add new car</h1>
                 <form action="addCar" method="POST">
                     <div class="messages">
                         <?php
@@ -32,6 +32,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                         }
                         ?>
                     </div>
+
                     <input name="brand" type="text" placeholder="Brand">
                     <input name="model" type="text" placeholder="Model">
                     <input name="production_year" type="text" placeholder="Production Year">
@@ -44,7 +45,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
     </div>
     <?php
 } else {
-
     echo "Please " . "<a href='login'> login </a>" . " first!";
 }
 ?>
