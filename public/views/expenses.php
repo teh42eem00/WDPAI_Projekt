@@ -1,5 +1,5 @@
 <?php
-// expenses.php
+// cars.php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/expenses.css">
 
-    <script src="https://kit.fontawesome.com/723297a893.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/965112f277.js" crossorigin="anonymous"></script>
     <title>EXPENSES</title>
 </head>
 
@@ -20,18 +20,38 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         <?php include('menu.php') ?>
         <main>
             <?php include('header.php') ?>
-            <section class="projects">
-                <div id="project-1">
-                    <img src="public/img/oil.svg">
+            <section class="expenses">
+
+                <?php
+                if (isset($messages)) {
+                    foreach ($messages as $message) {
+                        echo $message;
+                    }
+                }
+                if (!empty($expenses)) { ?>
+
                     <div>
-                        <h2>Expense 1</h2>
-                        <p>description</p>
-                        <div class="social-section">
-                            <i class="fas fa-heart"> 600</i>
-                            <i class="fas fa-minus-square"> 121</i>
-                        </div>
+                        <h3>LAST EVENTS</h3>
+                        <?php foreach ($expenses as $expense): ?>
+                            <div id="<?= $expense->getExpenseId(); ?>">
+                                <p><i class="fa-solid fa-calendar"></i> <?= $expense->getCreatedAt(); ?></p>
+                                <p><i class="fa-solid fa-gauge-high"></i> <?= $expense->getMileage(); ?> km</p>
+                                <p><?= $expense->getIcon($expense->getExpenseTypeId()) . ' ' . $expense->getExpenseType(); ?></p>
+                                <p><i class="fa-solid fa-dollar-sign"></i> <?= $expense->getExpenseAmount(); ?>PLN</p>
+
+                                <form class="expenseRemove" action="expenseRemove" method="POST">
+                                    <input type="hidden" id="expenseRemove" name="expenseRemove"
+                                           value="<?php echo $expense->getExpenseId(); ?>">
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
+                <div>
+                    <h3>SUMMARY</h3>
                 </div>
+                    <?php
+                } else echo "<a href='" . '/addExpense' . "'>You need to add expense first!</a>"; ?>
             </section>
         </main>
     </div>

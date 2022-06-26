@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: "Segoe UI", normal, sans-serif;
 }
 
 .container {
@@ -184,7 +185,7 @@ header {
 }
 
 .search-bar {
-    width: 70%;
+    width: 60%;
 }
 
 .search-bar>form>input {

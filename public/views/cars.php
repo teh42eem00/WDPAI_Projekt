@@ -8,7 +8,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" type="text/css" href="public/css/expenses.css">
 
-    <script src="https://kit.fontawesome.com/723297a893.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/965112f277.js" crossorigin="anonymous"></script>
     <title>CARS</title>
 </head>
 

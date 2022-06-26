@@ -7,6 +7,8 @@ class Expense
     private int $id_car;
     private float $expense_amount;
     private string $expense_type;
+    private int $mileage;
+    private string $created_at;
 
     /**
      * @param int $expense_id
@@ -14,14 +16,18 @@ class Expense
      * @param int $id_car
      * @param float $expense_amount
      * @param string $expense_type
+     * @param int $mileage
+     * @param string $created_at
      */
-    public function __construct(int $expense_id, int $expense_type_id, int $id_car, float $expense_amount, string $expense_type)
+    public function __construct(int $expense_id, int $expense_type_id, int $id_car, float $expense_amount, string $expense_type, int $mileage, string $created_at)
     {
         $this->expense_id = $expense_id;
         $this->expense_type_id = $expense_type_id;
         $this->id_car = $id_car;
         $this->expense_amount = $expense_amount;
         $this->expense_type = $expense_type;
+        $this->mileage = $mileage;
+        $this->created_at = $created_at;
     }
 
     /**
@@ -104,6 +110,47 @@ class Expense
         $this->expense_type = $expense_type;
     }
 
+    /**
+     * @return int
+     */
+    public function getMileage(): int
+    {
+        return $this->mileage;
+    }
 
+    /**
+     * @param int $mileage
+     */
+    public function setMileage(int $mileage): void
+    {
+        $this->mileage = $mileage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt(): string
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param string $created_at
+     */
+    public function setCreatedAt(string $created_at): void
+    {
+        $this->created_at = $created_at;
+    }
+
+    public function getIcon(int $expense_type_id): string
+    {
+        if ($expense_type_id == 1) {
+            return '<i class="fa-solid fa-gas-pump"></i>';
+        }
+        elseif ($expense_type_id == 2) {
+            return '<i class="fa-solid fa-wrench"></i>';
+        }
+
+        return '<i class="fa-solid fa-credit-card"></i>';
+    }
 }
-
