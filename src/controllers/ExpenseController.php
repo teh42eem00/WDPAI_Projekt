@@ -15,11 +15,65 @@ class ExpenseController extends AppController
         $this->expenseRepository = new ExpenseRepository();
     }
 
+    public function getSessionCarId():int{
+        session_start();
+        return $_SESSION['selectedCarId'];
+    }
+
     public function expenses()
     {
-        session_start();
-        $car_id = $_SESSION['selectedCarId'];
-        $expenses = $this->expenseRepository->getExpensesLimit($car_id);
+        $car_id = $this->getSessionCarId();
+        if (isset($car_id)) {
+            $expenses = $this->expenseRepository->getExpensesLimit($car_id,1);
+        } else {
+            $expenses = null;
+        }
         $this->render('expenses', ['expenses' => $expenses]);
     }
+
+    public function history()
+    {
+        $car_id = $this->getSessionCarId();
+        if (isset($car_id)) {
+            $expenses = $this->expenseRepository->getExpensesLimit($car_id,null);
+        } else {
+            $expenses = null;
+        }
+        $this->render('history', ['expenses' => $expenses]);
+    }
+
+
+
+    public function addExpense()
+    {
+        if ($this->isPost()) {
+            $car_id = $this->getSessionCarId();
+            $expense_type_id = $this->expenseRepository->getExpenseTypeId($_POST['expenseCategory']);
+            $expense = new Expense(0, $expense_type_id, $car_id, $_POST['expense_amount'],
+                $expense_type_id, $_POST['mileage'], $_POST['created_at']);
+            $this->expenseRepository->addExpense($expense);
+            return $this->render('expenses', [
+                'messages' => ['You succesfully added new expense!'],
+                'expenses' => $this->expenseRepository->getExpensesLimit($car_id)
+            ]);
+        }
+        return $this->render('add-expense', ['messages' => $this->message]);
+    }
+
+    public function removeExpense()
+    {
+        if ($this->isPost()) {
+            $car_id = $this->getSessionCarId();
+            $this->expenseRepository->removeExpense($_POST['removeExpense']);
+            return $this->render('expenses', [
+                'messages' => ['You succesfully removed expense!'],
+                'expenses' => $this->expenseRepository->getExpensesLimit($car_id,3)
+            ]);
+        }
+    }
+
+    public function getTotalExpenses(){
+
+    }
+
 }

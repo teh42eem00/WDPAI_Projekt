@@ -6,10 +6,10 @@ session_start();
 
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/expenses.css">
+    <link rel="stylesheet" type="text/css" href="public/css/history.css">
 
     <script src="https://kit.fontawesome.com/965112f277.js" crossorigin="anonymous"></script>
-    <title>EXPENSES</title>
+    <title>HISTORY</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         <?php include('menu.php') ?>
         <main>
             <?php include('header.php') ?>
-            <section class="expenses">
+            <section class="history">
 
                 <?php
                 if (isset($messages)) {
@@ -31,7 +31,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                 if (!empty($expenses)) { ?>
 
                     <div>
-                        <h3>LAST EVENTS</h3>
+                        <h3>HISTORY</h3>
                         <?php foreach ($expenses as $expense): ?>
                             <div id="<?= $expense->getExpenseId(); ?>">
                                 <p><i class="fa-solid fa-calendar"></i> <?= $expense->getCreatedAt(); ?></p>
@@ -45,12 +45,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                                     <button type="submit"><i class="fa-solid fa-trash"></i> Remove</button>
                                 </form>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <div>
-                    <h3>SUMMARY</h3>
-                </div>
-                    <?php
+                        <?php endforeach;
                 } elseif (is_null($expenses)){
                     echo "<a href='" . '/cars' . "'>You need to select car first!</a>";
                 }
