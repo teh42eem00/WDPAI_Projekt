@@ -47,14 +47,17 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                             </div>
                         <?php endforeach; ?>
                     </div>
-                <div>
-                    <h3>SUMMARY</h3>
-                </div>
+                    <div>
+                        <h3>SUMMARY</h3>
+                        <div>
+                            <p>Total Cost: <?php echo $total ?></p>
+                            <p>This Month: <?php echo $this_month ?></p>
+                        </div>
+                    </div>
                     <?php
-                } elseif (is_null($expenses)){
+                } elseif (is_null($expenses)) {
                     echo "<a href='" . '/cars' . "'>You need to select car first!</a>";
-                }
-                else echo "<a href='" . '/addExpense' . "'>You need to add expense first!</a>"; ?>
+                } else echo "<a href='" . '/addExpense' . "'>You need to add expense first!</a>"; ?>
             </section>
         </main>
     </div>

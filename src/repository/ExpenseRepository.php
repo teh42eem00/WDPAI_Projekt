@@ -28,7 +28,8 @@ class ExpenseRepository extends Repository
         return $result;
     }
 
-    public function getExpenseTypeId(string $expense_type){
+    public function getExpenseTypeId(string $expense_type)
+    {
         $stmt = $this->database->connect()->prepare('SELECT expense_type_id FROM public.expense_types 
                     WHERE expense_type= :expense_type');
         $stmt->bindParam(':expense_type', $expense_type);
@@ -50,7 +51,7 @@ class ExpenseRepository extends Repository
         $id_car = $expense->getIdCar();
         $mileage = $expense->getMileage();
         $created_at = $expense->getCreatedAt();
-        $stmt->execute([$expense_type_id,$expense_amount,$id_car,$mileage,$created_at]);
+        $stmt->execute([$expense_type_id, $expense_amount, $id_car, $mileage, $created_at]);
     }
 
     public function removeExpense($expense_id): void
@@ -59,4 +60,46 @@ class ExpenseRepository extends Repository
         $stmt->bindParam(':expense_id', $expense_id);
         $stmt->execute([$expense_id]);
     }
+
+    public function getTotalExpenses($id_car): ?float
+    {
+        $stmt = $this->database->connect()->prepare('SELECT SUM (expense_amount) as total FROM expenses WHERE id_car = :id_car;');
+        $stmt->bindParam(':id_car', $id_car);
+        $stmt->execute();
+        $total = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$total) {
+            return 0;
+        }
+
+        return $total['total'];
+    }
+
+    public function getThisMonthExpenses($id_car): ?float
+    {
+        $stmt = $this->database->connect()->prepare('SELECT SUM (expense_amount) as this_month FROM expenses WHERE id_car = :id_car and 
+                                                         extract (month from created_at) = extract(month from current_date)');
+        $stmt->bindParam(':id_car', $id_car);
+        $stmt->execute();
+        $this_month = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$this_month) {
+            return 0;
+        }
+
+        return $this_month['this_month'];
+    }
+
+    public function getPercentage($id_car): ?float
+    {
+        $stmt = $this->database->connect()->prepare('SELECT SUM (expense_amount) as this_month FROM expenses WHERE id_car = :id_car and 
+                                                         extract (month from created_at) = extract(month from current_date)');
+        $stmt->bindParam(':id_car', $id_car);
+        $stmt->execute();
+        $this_month = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$this_month) {
+            return 0;
+        }
+
+        return $this_month['this_month'];
+    }
+
 }

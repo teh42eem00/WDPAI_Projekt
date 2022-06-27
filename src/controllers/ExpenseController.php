@@ -15,7 +15,8 @@ class ExpenseController extends AppController
         $this->expenseRepository = new ExpenseRepository();
     }
 
-    public function getSessionCarId():int{
+    public function getSessionCarId(): int
+    {
         session_start();
         return $_SESSION['selectedCarId'];
     }
@@ -24,24 +25,27 @@ class ExpenseController extends AppController
     {
         $car_id = $this->getSessionCarId();
         if (isset($car_id)) {
-            $expenses = $this->expenseRepository->getExpensesLimit($car_id,1);
+            $expenses = $this->expenseRepository->getExpensesLimit($car_id, 3);
         } else {
             $expenses = null;
         }
-        $this->render('expenses', ['expenses' => $expenses]);
+        $this->render('expenses', [
+            'expenses' => $expenses,
+            'total' => $this->expenseRepository->getTotalExpenses($car_id),
+            'this_month' => $this->expenseRepository->getThisMonthExpenses($car_id)
+        ]);
     }
 
     public function history()
     {
         $car_id = $this->getSessionCarId();
         if (isset($car_id)) {
-            $expenses = $this->expenseRepository->getExpensesLimit($car_id,null);
+            $expenses = $this->expenseRepository->getExpensesLimit($car_id, null);
         } else {
             $expenses = null;
         }
         $this->render('history', ['expenses' => $expenses]);
     }
-
 
 
     public function addExpense()
@@ -54,7 +58,9 @@ class ExpenseController extends AppController
             $this->expenseRepository->addExpense($expense);
             return $this->render('expenses', [
                 'messages' => ['You succesfully added new expense!'],
-                'expenses' => $this->expenseRepository->getExpensesLimit($car_id)
+                'expenses' => $this->expenseRepository->getExpensesLimit($car_id, 3),
+                'total' => $this->expenseRepository->getTotalExpenses($car_id),
+                'this_month' => $this->expenseRepository->getThisMonthExpenses($car_id)
             ]);
         }
         return $this->render('add-expense', ['messages' => $this->message]);
@@ -67,13 +73,11 @@ class ExpenseController extends AppController
             $this->expenseRepository->removeExpense($_POST['removeExpense']);
             return $this->render('expenses', [
                 'messages' => ['You succesfully removed expense!'],
-                'expenses' => $this->expenseRepository->getExpensesLimit($car_id,3)
+                'expenses' => $this->expenseRepository->getExpensesLimit($car_id, 3),
+                'total' => $this->expenseRepository->getTotalExpenses($car_id),
+                'this_month' => $this->expenseRepository->getThisMonthExpenses($car_id)
             ]);
         }
-    }
-
-    public function getTotalExpenses(){
-
     }
 
 }
