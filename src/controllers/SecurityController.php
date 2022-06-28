@@ -44,6 +44,7 @@ class SecurityController extends AppController
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $email;
         $_SESSION['user_id'] = $this->userRepository->getUserId($email);
+        $_SESSION['id_role'] = $this->userRepository->getUserIdRole($email);
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: $url/cars");
     }

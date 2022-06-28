@@ -38,9 +38,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                     <input type="date" id="created_at" name="created_at">
                     <select name="expenseCategory" id="expenseCategory">
                         <optgroup label="Expense Categories">
-                        <option value="Fuel">Fuel</option>
-                        <option value="Service">Service</option>
-                        <option value="Expenses">Other</option>
+                            <option value="Fuel">Fuel</option>
+                            <option value="Service">Service</option>
+                            <option value="Expenses">Other</option>
                     </select>
                     <button type="submit">add</button>
                 </form>

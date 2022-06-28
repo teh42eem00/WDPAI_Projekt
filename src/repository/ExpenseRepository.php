@@ -99,9 +99,8 @@ class ExpenseRepository extends Repository
             return 0;
         }
 
-        return $percentage['get_expense_category_percentage']*100;
+        return $percentage['get_expense_category_percentage'] * 100;
     }
-
 
 
 }

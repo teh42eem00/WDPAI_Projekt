@@ -52,7 +52,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                         <div class="summary">
                             <p>Total Cost: <?php echo $total ?></p>
                             <p>This Month: <?php echo $this_month ?></p>
-                            <div class = "percentages">
+                            <div class="percentages">
                                 <p><i class="fa-solid fa-gas-pump"></i> <?php echo $percentage_fuel ?>%</p>
                                 <p><i class="fa-solid fa-wrench"></i> <?php echo $percentage_service ?>%</p>
                                 <p><i class="fa-solid fa-credit-card"></i> <?php echo $percentage_expenses ?>%</p>

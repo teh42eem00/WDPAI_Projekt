@@ -33,9 +33,9 @@ class ExpenseController extends AppController
             'expenses' => $expenses,
             'total' => $this->expenseRepository->getTotalExpenses($car_id),
             'this_month' => $this->expenseRepository->getThisMonthExpenses($car_id),
-            'percentage_fuel'=>$this->expenseRepository->getPercentage($car_id,1),
-            'percentage_service'=>$this->expenseRepository->getPercentage($car_id,2),
-            'percentage_expenses'=>$this->expenseRepository->getPercentage($car_id,3),
+            'percentage_fuel' => $this->expenseRepository->getPercentage($car_id, 1),
+            'percentage_service' => $this->expenseRepository->getPercentage($car_id, 2),
+            'percentage_expenses' => $this->expenseRepository->getPercentage($car_id, 3),
         ]);
     }
 

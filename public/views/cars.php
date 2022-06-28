@@ -42,7 +42,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                             </div>
                         </div>
                     <?php endforeach;
-                } else echo "<a href='".'/addCar'."'>You need to add car first!</a>"; ?>
+                } else echo "<a href='" . '/addCar' . "'>You need to add car first!</a>"; ?>
             </section>
         </main>
     </div>

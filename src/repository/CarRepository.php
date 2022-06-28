@@ -29,9 +29,14 @@ class CarRepository extends Repository
 
     public function getCars(int $id_user): array
     {
+        session_start();
         $result = [];
-        $stmt = $this->database->connect()->prepare('SELECT * FROM public.car_details WHERE id_user = :id_user');
-        $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        if ($_SESSION['id_role'] == 2) {
+            $stmt = $this->database->connect()->prepare('SELECT * FROM public.car_details');
+        } else {
+            $stmt = $this->database->connect()->prepare('SELECT * FROM public.car_details WHERE id_user = :id_user');
+            $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        }
         $stmt->execute();
         $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -48,7 +53,7 @@ class CarRepository extends Repository
         return $result;
     }
 
-    public function getCarSetupId(string $brand,string $model, int $production_year)
+    public function getCarSetupId(string $brand, string $model, int $production_year)
     {
         $stmt = $this->database->connect()->prepare('SELECT car_setup_id FROM public.car_setup 
                     WHERE brand = :brand and model = :model and production_year = :production_year');
@@ -67,19 +72,24 @@ class CarRepository extends Repository
 
     public function addCar(Car $car): void
     {
-        $stmt = $this->database->connect()->prepare('INSERT INTO car_setup(brand,model,production_year)
-        VALUES (?, ?, ?)');
-        $brand=$car->getBrand();
-        $model=$car->getModel();
-        $production_year=$car->getProductionYear();
-        $stmt->execute([$brand,$model,$production_year]);
+        $brand = $car->getBrand();
+        $model = $car->getModel();
+        $production_year = $car->getProductionYear();
+        $carSetupId = $this->getCarSetupId($brand, $model, $production_year);
 
-        $carSetupId = $this->getCarSetupId($brand,$model,$production_year);
+        if (is_null($carSetupId)) {
+            $stmt = $this->database->connect()->prepare('INSERT INTO car_setup(brand,model,production_year)
+        VALUES (?, ?, ?)');
+
+            $stmt->execute([$brand, $model, $production_year]);
+        }
+
+
         session_start();
         $assignedById = $_SESSION['user_id'];
 
         $stmt = $this->database->connect()->prepare('
         INSERT INTO cars(id_user, car_setup_id, license_plate) VALUES (?, ?, ?)');
-        $stmt->execute([$assignedById,$carSetupId,$car->getLicensePlate()]);
+        $stmt->execute([$assignedById, $carSetupId, $car->getLicensePlate()]);
     }
 }

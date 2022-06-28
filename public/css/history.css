@@ -6,40 +6,40 @@ section.history {
     overflow: auto;
 }
 
-section.car-form{
+section.car-form {
     grid-template-columns: none;
 }
 
-section.history>div>img {
+section.history > div > img {
     height: 50%;
     width: 100%;
     object-fit: cover;
     border-radius: 1em 1em 0 0;
 }
 
-section.history>div>div {
+section.history > div > div {
     height: 50%;
     margin: 1em;
     color: black;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     background: #FFFFFF80 0% 0% no-repeat padding-box;
     border-radius: 20px;
     opacity: 1;
 }
 
-section.history>div>div>p{
+section.history > div > div > p {
     margin: 0.2em 0.2em 0.2em 1em;
     font: normal normal normal 2vw/1em Segoe UI;
     letter-spacing: 0px;
     color: #1C333C;
 }
 
-section.history>div>div>p>i{
-    font-size:2vw;
+section.history > div > div > p > i {
+    font-size: 2vw;
 }
 
-section.history>div {
+section.history > div {
     height: auto;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ section.history>div {
     opacity: 1;
 }
 
-section.history>div>h3{
+section.history > div > h3 {
     text-align: center;
     font: normal normal bold 35px/47px Segoe UI;
     letter-spacing: 0px;

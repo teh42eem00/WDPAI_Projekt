@@ -30,26 +30,25 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                 }
                 if (!empty($expenses)) { ?>
 
-                    <div>
-                        <h3>HISTORY</h3>
-                        <?php foreach ($expenses as $expense): ?>
-                            <div id="<?= $expense->getExpenseId(); ?>">
-                                <p><i class="fa-solid fa-calendar"></i> <?= $expense->getCreatedAt(); ?></p>
-                                <p><i class="fa-solid fa-gauge-high"></i> <?= $expense->getMileage(); ?> km</p>
-                                <p><?= $expense->getIcon($expense->getExpenseTypeId()) . ' ' . $expense->getExpenseType(); ?></p>
-                                <p><i class="fa-solid fa-dollar-sign"></i> <?= $expense->getExpenseAmount(); ?>PLN</p>
+                <div>
+                    <h3>HISTORY</h3>
+                    <?php foreach ($expenses as $expense): ?>
+                        <div id="<?= $expense->getExpenseId(); ?>">
+                            <p><i class="fa-solid fa-calendar"></i> <?= $expense->getCreatedAt(); ?></p>
+                            <p><i class="fa-solid fa-gauge-high"></i> <?= $expense->getMileage(); ?> km</p>
+                            <p><?= $expense->getIcon($expense->getExpenseTypeId()) . ' ' . $expense->getExpenseType(); ?></p>
+                            <p><i class="fa-solid fa-dollar-sign"></i> <?= $expense->getExpenseAmount(); ?>PLN</p>
 
-                                <form class="removeExpense" action="removeExpense" method="POST">
-                                    <input type="hidden" id="removeExpense" name="removeExpense"
-                                           value="<?php echo $expense->getExpenseId(); ?>">
-                                    <button type="submit"><i class="fa-solid fa-trash"></i> Remove</button>
-                                </form>
-                            </div>
-                        <?php endforeach;
-                } elseif (is_null($expenses)){
-                    echo "<a href='" . '/cars' . "'>You need to select car first!</a>";
-                }
-                else echo "<a href='" . '/addExpense' . "'>You need to add expense first!</a>"; ?>
+                            <form class="removeExpense" action="removeExpense" method="POST">
+                                <input type="hidden" id="removeExpense" name="removeExpense"
+                                       value="<?php echo $expense->getExpenseId(); ?>">
+                                <button type="submit"><i class="fa-solid fa-trash"></i> Remove</button>
+                            </form>
+                        </div>
+                    <?php endforeach;
+                    } elseif (is_null($expenses)) {
+                        echo "<a href='" . '/cars' . "'>You need to select car first!</a>";
+                    } else echo "<a href='" . '/addExpense' . "'>You need to add expense first!</a>"; ?>
             </section>
         </main>
     </div>

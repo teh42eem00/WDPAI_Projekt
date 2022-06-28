@@ -146,8 +146,7 @@ class Expense
     {
         if ($expense_type_id == 1) {
             return '<i class="fa-solid fa-gas-pump"></i>';
-        }
-        elseif ($expense_type_id == 2) {
+        } elseif ($expense_type_id == 2) {
             return '<i class="fa-solid fa-wrench"></i>';
         }
 

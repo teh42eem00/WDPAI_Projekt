@@ -45,6 +45,22 @@ class UserRepository extends Repository
         return $user['user_id'];
     }
 
+    public function getUserIdRole(string $email): ?int
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT id_role FROM public.user WHERE email = :email
+        ');
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $id_role = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$id_role) {
+            return null;
+        }
+
+        return $id_role['id_role'];
+    }
 
     public function addUser(User $user)
     {
