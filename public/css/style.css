@@ -51,8 +51,6 @@ button {
     border: none;
     color: #707070;
     margin: 1em;
-    line-height: 2.5em;
-    display: block ruby;
 }
 
 input, select {
@@ -139,11 +137,24 @@ li i {
     color: #FFFFFF;
     padding: 0.2rem;
     width: auto;
-    display: block ruby;
 }
 
 .add-expense{
     display: inline-grid;
+}
+
+.percentages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.summary{
+    grid-template-columns: repeat(1,1fr) !important;
+}
+
+.summary>p{
+    text-align: center;
 }
 
 .button-text {

@@ -88,18 +88,20 @@ class ExpenseRepository extends Repository
         return $this_month['this_month'];
     }
 
-    public function getPercentage($id_car): ?float
+    public function getPercentage($id_car, $expense_type_id): ?float
     {
-        $stmt = $this->database->connect()->prepare('SELECT SUM (expense_amount) as this_month FROM expenses WHERE id_car = :id_car and 
-                                                         extract (month from created_at) = extract(month from current_date)');
-        $stmt->bindParam(':id_car', $id_car);
+        $stmt = $this->database->connect()->prepare('SELECT get_expense_category_percentage(:idcar,:expensetypeid)');
+        $stmt->bindParam(':idcar', $id_car);
+        $stmt->bindParam(':expensetypeid', $expense_type_id);
         $stmt->execute();
-        $this_month = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$this_month) {
+        $percentage = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$percentage) {
             return 0;
         }
 
-        return $this_month['this_month'];
+        return $percentage['get_expense_category_percentage']*100;
     }
+
+
 
 }

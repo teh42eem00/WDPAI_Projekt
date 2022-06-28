@@ -18,7 +18,8 @@ section.car-form{
 }
 
 .expenses>div>div {
-    height: 50%;
+    text-align: center;
+    height: auto;
     margin: 1em;
     color: black;
     display: grid;
@@ -55,4 +56,10 @@ section.car-form{
     color: #1C333C;
     text-transform: uppercase;
     opacity: 1;
+}
+
+@media screen and (max-width: 1080px) {
+section {
+    grid-template-columns: repeat(1,1fr);
+}
 }
